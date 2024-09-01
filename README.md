@@ -37,4 +37,15 @@ npm start
     >- Go to the frontend/src/baseurl folder.
     >- Change the base URL to http://localhost:5000/api in the respective file.
 
+## Additional Setup Requirements
+### JDoodle Compiler
+To run the compiler, you need to create an account on [JDoodle](https://www.jdoodle.com/). and generate an API key. Save this API key in your application configuration to enable compiler functionality.
+
+> Refer jdoodle compiler api [Documention](https://www.jdoodle.com/docs/jdoodle-apis/introduction-to-compiler-apis)
+
+## Cloudinary for Image Handling
+To save images or photos, you need to create an account on [Cloudinary](https://cloudinary.com/) and generate an API key. Configure your application with this API key to handle image uploads and management.
+
+> Refer cloudinary developer [documentation](https://cloudinary.com/documentation/how_to_integrate_cloudinary)
+
 This README provides the necessary steps to get your application up and running, both in production and development environments.
