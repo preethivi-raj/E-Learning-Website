@@ -2,13 +2,11 @@ import axios from "axios";
 
 export const complier = async (req, res) => {
     try {
-        
         const script = req.body.script;
         const language = "nodejs";
         const versionIndex = "6";
 
-        console.log(script);
-
+        
         const execution_data = {
             clientId: process.env.JDOODLE_CLIENT_ID,
             clientSecret: process.env.JDOODLE_CLIENT_SECRET,
