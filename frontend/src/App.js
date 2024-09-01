@@ -16,8 +16,10 @@ import CreateCourse from './Pages/Admin/CreateCourse'
 import CreateNotes from './Pages/Admin/CreateNotes'
 import baseUrl from './baseUrl/baseUrl'
 
+
 const App = () => {
     
+ 
   const {data : authUser , isLoading}= useQuery({
     queryKey : ['authUser'],
     queryFn : async()=>{
@@ -48,6 +50,8 @@ const App = () => {
     )
   }
 
+
+
   return (
     <div>
       <Navbar/>
@@ -55,12 +59,13 @@ const App = () => {
         <Route path='/' element={<HomePage /> } />
         <Route path='/course' element={authUser ?<CoursePage />: <Navigate to="/login"/>} />
         <Route path='/course/:id' element={authUser ?<IndividualCoursePage />: <Navigate to="/login"/>} />
-        <Route path='/admin' element={authUser ?<AdminPage />: <Navigate to="/"/>} />
+         { authUser?.role !== "user" &&  <Route path='/admin' element={authUser ?<AdminPage />: <Navigate to="/"/>} />}
         <Route path='/login' element={!authUser ?<Login />: <Navigate to="/"/>} />
         <Route path='/signup' element={!authUser ?<Signup />: <Navigate to="/"/>} />
         <Route path='complier' element={authUser ?<Complier />: <Navigate to="/login"/>} />
-        <Route path="/admin/course/create" element={authUser ?<CreateCourse  />: <Navigate to="/"/>} />
-        <Route path="/admin/notes/create/:id" element={authUser ?<CreateNotes />: <Navigate to="/"/>} />
+        { authUser?.role !== "user" && <Route path="/admin/course/create" element={authUser ?<CreateCourse  />: <Navigate to="/"/>} />}
+        { authUser?.role !== "user" && <Route path="/admin/notes/create/:id" element={authUser ?<CreateNotes />: <Navigate to="/"/>} /> }
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Toaster/>
     </div>

@@ -47,7 +47,7 @@ const Navbar = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden"
+              className="btn btn-ghost btn-sm lg:btn-md lg:hidden"
               onClick={toggleDropdown}
             >
               <svg
@@ -79,11 +79,16 @@ const Navbar = () => {
                 <li className="rounded-md  hover:bg-green-400 hover:text-white">
                   <Link>Fullstack Roadmap</Link>
                 </li>
+                {authUser?.role !== "user" && authUser && (
+              <li className="rounded-md  hover:bg-green-400 hover:text-white">
+              <Link to="/admin">Admin</Link>
+            </li>
+            )}
               
               </ul>
             )}
           </div>
-          <Link to="/" className="btn btn-ghost text-xl rounded-md  hover:bg-green-400 hover:text-white">Education</Link>
+          <Link to="/" className="btn btn-ghost btn-sm lg:btn-md text-sm lg:text-xl rounded-md  hover:bg-green-400 hover:text-white">Education</Link>
         </div>
         <div className="navbar-center hidden  lg:flex  ">
           <ul className="menu menu-horizontal text-md  ">
@@ -96,14 +101,19 @@ const Navbar = () => {
             <li className="rounded-md  hover:bg-green-400 hover:text-white">
               <Link>Fullstack Roadmap</Link>
             </li>
+            {authUser?.role !== "user" && authUser && (
+              <li className="rounded-md  hover:bg-green-400 hover:text-white">
+              <Link to="/admin">Admin</Link>
+            </li>
+            )}
            
           </ul>
         </div>
         <div className="navbar-end mr-2">
-            <p  className="mr-3 p-1 uppercase cursor-default rounded btn-outline bg-green-50 text-green-500 hover:bg-green-400 hover:text-white">Free</p>
+            <p  className="mr-3 text-xs lg:text-sm  p-1 uppercase cursor-default rounded btn-outline bg-green-50 text-green-500 hover:bg-green-400 hover:text-white">Free</p>
           {authUser ? (
-            <button onClick={logout} className="btn uppercase rounded btn-outline bg-green-50 text-green-500 hover:bg-green-400 hover:text-white">{isPending ? <Loading/> : "Logout"} </button>
-          ): (<Link to="/signup" className="btn uppercase rounded btn-outline bg-green-50 text-green-500 hover:bg-green-400 hover:text-white">Sign Up</Link>)}
+            <button onClick={logout} className="btn btn-sm w-14 lg:w-20 lg:h-10 lg:text-sm text-xs h-8 uppercase rounded btn-outline bg-green-50 text-green-500 hover:bg-green-400 hover:text-white">{isPending ? <Loading/> : "Logout"} </button>
+          ): (<Link to="/login" className="btn btn-sm w-14 lg:w-20 lg:h-10 lg:text-sm text-xs h-8 uppercase rounded btn-outline bg-green-50 text-green-500 hover:bg-green-400 hover:text-white">Login</Link>)}
         </div>
         
       </div>

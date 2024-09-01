@@ -30,13 +30,14 @@ const Login = () => {
 					},
 					body : JSON.stringify({email , password})
 				})
+       
 				const data = await res.json()
 				if(!res.ok){
-					throw new Error(data.error || 'Something went wrong')
+					throw new Error(data.error || 'User name or password is incorrect')
 				}
 				return data
 			} catch (error) {
-				throw error
+				throw new Error(error.message)  
 			}
 		},
 		onSuccess : ()=>{
@@ -53,6 +54,8 @@ const Login = () => {
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+
   return (
     <div className="lg:flex lg:mx-44 lg:items-center lg:-m-20">
       <div className="flex  justify-center items-center">

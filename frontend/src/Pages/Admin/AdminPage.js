@@ -3,9 +3,10 @@ import { useMutation } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import CoursePage from "./CoursesPage";
 import baseUrl from "../../baseUrl/baseUrl";
+import Loading from "../../Components/Loading";
 
 const AdminPage = () => {
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses , isPending] = useState([]);
 
   const { mutate: getAllCourses } = useMutation({
     mutationFn: async () => {
@@ -48,7 +49,7 @@ const AdminPage = () => {
             Create New Course
           </Link>
         </div>
-         <CoursePage courses={courses} />  
+        {isPending ? <Loading/> : <CoursePage courses={courses} />  }
       </div>
     </div>
   );
