@@ -15,6 +15,7 @@ import AdminPage from './Pages/Admin/AdminPage'
 import CreateCourse from './Pages/Admin/CreateCourse'
 import CreateNotes from './Pages/Admin/CreateNotes'
 import baseUrl from './baseUrl/baseUrl'
+import Footer from './Components/Footer'
 
 
 const App = () => {
@@ -67,6 +68,7 @@ const App = () => {
         { authUser?.role !== "user" && <Route path="/admin/notes/create/:id" element={authUser ?<CreateNotes />: <Navigate to="/"/>} /> }
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <Footer/>
       <Toaster/>
     </div>
   )

@@ -1,9 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import baseUrl from "../baseUrl/baseUrl";
 
 const Comments = ({ comments , courseId }) => {
 
+  const  {data : authUser} = useQuery({queryKey:["authUser"]})
 
   const {mutate:deleteComment} = useMutation({
     mutationFn: async (id) => {
@@ -37,6 +38,8 @@ const Comments = ({ comments , courseId }) => {
 
   
 
+  
+
   const handleDelete = (id) => {
     deleteComment(id);
   }
@@ -48,9 +51,9 @@ const Comments = ({ comments , courseId }) => {
             {comments.map((comment) => (
               <div  key={comment?._id}>
                 <li
-                  className="bg-green-100  p-2 list-none rounded-lg shadow-md"
+                  className="bg-green-100 text-gray-900  p-2 list-none rounded-lg shadow-md"
                 >
-                  <div className="avatar m-1 placeholder">
+                  <div className="avatar m-2 placeholder">
                     <div className="bg-neutral text-neutral-content w-8 rounded-full">
                       <span className="text-md uppercase">
                         {comment?.name.substring(0, 2)}
@@ -59,7 +62,9 @@ const Comments = ({ comments , courseId }) => {
                   </div>
                   {comment.text}
                 </li>
-                  <button className="btn mt-1 bg-red-300 btn-sm " onClick={()=>handleDelete(comment?._id)}>Delete</button> 
+                 {authUser._id === comment.user && 
+                  <button className="btn mt-1 bg-red-300 btn-sm " onClick={()=>handleDelete(comment?._id)}>Delete</button>  
+                  }
               </div>
             ))}
           </ul>

@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import home from '../../assests/home.png'
 
 const HomePage = () => {
-
-    const  year = new Date().getFullYear()
   return (
    <div>
     <section className="bg-gradient-to-l from-white to-green-300 text-white py-20">
@@ -54,13 +52,7 @@ const HomePage = () => {
                 <Link to="/signup">Join Now</Link>
             </button>
         </div>
-    </section>
-
-    <footer className="bg-white py-6">
-        <div className="container mx-auto px-4 text-center text-gray-600">
-            <p>&copy; {year} MERN Stack Course. All rights reserved.</p>
-        </div>
-    </footer>
+    </section> 
    </div>
   )
 }
